@@ -10,8 +10,8 @@ def hello():
 
 
 if __name__ == "__main__":
-    # host = "localhost"
-    host = "0.0.0.0"
+    host = "localhost"
+    # host = "0.0.0.0"
     port = 8080
     print(f"Starting the webserver on {host}:{port}")
 
