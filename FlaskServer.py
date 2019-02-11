@@ -1,12 +1,19 @@
 from flask import Flask
-from flask import render_template, send_file
+from flask import render_template, send_file, jsonify, request
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods = ['GET', 'POST'])
 def hello():
-    return "Hello World!"
+    if request.method == "GET":
+        return "Hello World!"
+    else:
+        print(request.form)
+        return jsonify({
+            "Hello":"World!",
+            "Recieved":request.form
+        })
 
 
 if __name__ == "__main__":
