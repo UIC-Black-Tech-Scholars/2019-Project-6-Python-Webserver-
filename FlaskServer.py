@@ -1,18 +1,25 @@
 from flask import Flask
 from flask import render_template, send_file, jsonify, request
+import json
 
 app = Flask(__name__)
 
 
-@app.route("/", methods = ['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def hello():
     if request.method == "GET":
         return "Hello World!"
     else:
         print(request.form)
+        print(request.data)
+        recieved_data = json.loads(
+            (request.form if request.form else request.data)
+                .decode("utf-8")
+        )
+        print(recieved_data)
         return jsonify({
-            "Hello":"World!",
-            "Recieved":request.form
+            "Hello": "World!",
+            "Recieved": recieved_data
         })
 
 
